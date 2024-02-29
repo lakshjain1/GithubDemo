@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/pritam-khergade/student-ui.git'
+            }
+        }
+        stage('install Docker') {
+            steps {
+                sh'''
+                sudo dnf install docker -y
+                sudo systemctl start docker
+                sudo systemctl enable docker
+                '''
+            }
+        }
+        stage('build Docker') {
+            steps {
+                sh'''
+                sudo docker build -t lakshdocker01 .
+                '''
+            }
+        }
+        stage('push Docker') {
+            steps {
+                sh'''
+                aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 838456304329.dkr.ecr.ap-south-1.amazonaws.com
+                sudo docker tag lakshdocker01:latest 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:$(build_id)
+                sudo docker push 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:latest
+                '''
+            }
+        }
+}
+}
