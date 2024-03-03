@@ -30,8 +30,8 @@ pipeline {
                 sudo systemctl restart docker
                 aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 838456304329.dkr.ecr.ap-south-1.amazonaws.com
                 sudo docker build -t lakshdocker01 .
-                sudo docker tag lakshdocker01:latest 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:${Laksh}-${BUILD_TIMESTAMP}
-                sudo docker push 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:${Laksh}-${BUILD_TIMESTAMP}
+                sudo docker tag lakshdocker01:latest 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:${BUILD_TIMESTAMP}
+                sudo docker push 838456304329.dkr.ecr.ap-south-1.amazonaws.com/lakshdocker01:${BUILD_TIMESTAMP}
                 '''
             }
         }
