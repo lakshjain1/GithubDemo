@@ -18,7 +18,7 @@ pipeline {
         stage('artifact push') {
             steps {
                 sh'''
-                sudo aws s3 cp studentapp-2.2-SNAPSHOT.war s3://artifactlaksh
+                sudo aws s3 cp /var/lib/jenkins/workspace/New_pipeline/target/studentapp-2.2-SNAPSHOT.war s3://artifactlaksh
                 '''
             }
         }        
