@@ -8,14 +8,14 @@ pipeline {
                 sh'''
                 sudo yum install git -y
 		sudo yum install maven
+		sudo mvn clean install
                 '''
             }
         }
         stage('checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Pritam-Khergade/student-ui.git'
-		sudo mvn clean install
-            }
+		}
         }
 		stage('install docker') {
             steps {
