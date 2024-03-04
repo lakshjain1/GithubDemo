@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('install git') {
+        stage('install git and') {
             steps {
                 sh'''
                 sudo yum install git -y
