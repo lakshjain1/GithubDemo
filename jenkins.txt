@@ -7,7 +7,7 @@ pipeline {
             steps {
                 sh'''
                 sudo yum install git -y
-		sudo yum install maven
+		sudo yum install maven -y
 		sudo mvn clean install
                 '''
             }
